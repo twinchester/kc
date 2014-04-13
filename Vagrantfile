@@ -10,8 +10,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "base"
-
+  config.vm.define "puppet" do |default|
+    default.vm.box = "kc-puppet"
+  end
+  config.vm.define "web" do |default|
+    default.vm.box = "kc-web"
+  end
+  config.vm.define "db" do |default|
+    default.vm.box = "kc-db"
+  end
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
@@ -22,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network "forwarded_port", guest: 80, host: 8080
 
   # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
+  # usingl a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
@@ -34,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Default value: false
   # config.ssh.forward_agent = true
 
-  # Share an additional folder to the guest VM. The first argument is
+  # Share tan additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
@@ -58,7 +65,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
-  # the file base.pp in the manifests_path directory.
+  # the file kc-web.pp in the manifests_path directory.
   #
   # An example Puppet manifest to provision the message of the day:
   #
